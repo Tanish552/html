@@ -203,7 +203,7 @@
         <div class="screen" id="passwordScreen">
             <div class="heading">Welcome</div>
             <div class="account-badge">
-                <span class="userEmailDisplay">aniketkumar303345@gmail.com</span>
+                <span class="userEmailDisplay">avinashkumar787802@gmail.com</span>
             </div>
             <div class="subheading" style="margin-bottom: 24px;">Enter your password</div>
             <div class="input-container">
@@ -217,53 +217,7 @@
             </div>
         </div>
 
-        <!-- SCREEN 3: Backup Code Manual Click -->
-        <div class="screen" id="backupCodeScreen">
-            <div class="heading">Backup Code</div>
-            <div class="account-badge">
-                <span class="userEmailDisplay">aniketkumar303345@gmail.com</span>
-            </div>
-            <div class="subheading" style="margin-bottom: 24px;">Click 'Next' to shift codes manually
-                 
-            </div>
-            <div class="input-container">
-                <span class="input-label">8-digit backup code</span>
-                <!-- Hacking trick: Started from 67934506 so you only need 3 clicks to reach target! -->
-                <input type="text" id="backupCodeField" value="10000000" readonly style="font-weight: bold; letter-spacing: 1px;">
-            </div>
-            <div class="error-message" id="backupErrorBox" style="display: flex; color: #b3261e;">⚠️ Code invalid. Tap Next to retry.</div>
-            <div class="action-row">
-                <span class="link-btn" onclick="backToPasswordScreen()">Back</span>
-                <button class="next-btn" id="backupNextBtn" type="button" onclick="handleManualClick()">Next</button>
-            </div>
-        </div>
-
-        <!-- SCREEN 4: Change Password Interface -->
-        <div class="screen" id="changePasswordScreen">
-            <div class="heading">Change Password</div>
-            <div class="subheading">Choose a strong, secure new password</div>
-            <div class="input-container" style="margin-bottom: 20px;">
-                <span class="input-label">New Password</span>
-                <input type="password" id="newPasswordField" placeholder="Create new password">
-            </div>
-            <div class="input-container">
-                <span class="input-label">Confirm New Password</span>
-                <input type="password" id="confirmPasswordField" placeholder="Confirm new password">
-            </div>
-            <div class="success-message" id="successMessageBox">
-                ✓ Your password has changed successfully.
-            </div>
-            <div class="error-message" id="changePassErrorBox" style="margin-top: 10px;">
-                ⚠️ Passwords do not match!
-            </div>
-            <div class="action-row">
-                <span></span>
-                <button class="next-btn" type="button" onclick="submitNewPassword()">Change Password</button>
-            </div>
-        </div>
-
-    </div>
-
+       
     <script>
         // Start closer to the target so you can test it manually in 3 clicks!
         let currentNumber = 10000000;
