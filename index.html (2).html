@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Accounts - </title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f9;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            background: #ffffff;
+            width: 500px;
+            min-height: 500px;
+            padding: 44px;
+            border-radius: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            position: relative;
+        }
+
+        .google-logo {
+            display: flex;
+            font-size: 26px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+        .g-blue { color: #4285F4; }
+        .g-red { color: #EA4335; }
+        .g-yellow { color: #FBBC05; }
+        .g-green { color: #34A853; }
+
+        .heading {
+            font-size: 26px;
+            color: #1f1f1f;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .subheading {
+            font-size: 16px;
+            color: #444746;
+            margin-bottom: 32px;
+        }
+
+        .account-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #1f1f1f;
+            background: #f0f4f9;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 28px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .input-container {
+            width: 100%;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        input {
+            width: 100%;
+            padding: 18px 16px;
+            font-size: 16px;
+            border: 1px solid #747775;
+            border-radius: 4px;
+            outline: none;
+            color: #1f1f1f;
+            background: transparent;
+        }
+
+        input:focus {
+            border-color: #0b57d0;
+            border-width: 2px;
+            padding: 17px 15px;
+        }
+
+        .input-label {
+            position: absolute;
+            left: 12px;
+            top: -8px;
+            background: #ffffff;
+            padding: 0 6px;
+            font-size: 12px;
+            color: #0b57d0;
+            font-weight: 500;
+        }
+
+        .error-message {
+            color: #b3261e;
+            font-size: 13px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 18px;
+            display: none;
+        }
+
+        .success-message {
+            color: #146c43;
+            background-color: #d1e7dd;
+            border: 1px solid #badbcc;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 15px;
+            width: 100%;
+            display: none;
+            font-weight: 500;
+        }
+
+        .action-row {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .link-btn {
+            color: #0b57d0;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .link-btn:hover { text-decoration: underline; }
+
+        .next-btn {
+            background: #0b57d0;
+            color: #ffffff;
+            border: none;
+            padding: 12px 28px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 100px;
+            cursor: pointer;
+        }
+
+        .next-btn:hover { background-color: #0842a0; }
+
+        .screen {
+            display: none !important;
+            width: 100%;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .screen-active { display: flex !important; }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <!-- Google Logo -->
+        <div class="google-logo">
+            <span class="g-blue">G</span>
+            <span class="g-red">o</span>
+            <span class="g-yellow">o</span>
+            <span class="g-blue">g</span>
+            <span class="g-green">l</span>
+            <span class="g-red">e</span>
+        </div>
+
+        <!-- SCREEN 1: Email Input -->
+        <div class="screen screen-active" id="emailScreen">
+            <div class="heading">Sign in</div>
+            <div class="subheading">to continue to Gmail</div>
+            <div class="input-container">
+                <span class="input-label" style="color: #747775;">Email or phone</span>
+                <input type="text" id="emailInput" value="aniketkumar303345@gmail.com">
+            </div>
+            <div class="error-message" id="emailErrorBox">⚠️ Enter a valid email address.</div>
+            <div class="action-row">
+                <span class="link-btn">Create account</span>
+                <button class="next-btn" type="button" onclick="goToPasswordScreen()">Next</button>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: Password Input -->
+        <div class="screen" id="passwordScreen">
+            <div class="heading">Welcome</div>
+            <div class="account-badge">
+                <span class="userEmailDisplay">aniketkumar303345@gmail.com</span>
+            </div>
+            <div class="subheading" style="margin-bottom: 24px;">Enter your password</div>
+            <div class="input-container">
+                <span class="input-label">Password</span>
+                <input type="password" id="passwordField" placeholder="Enter your password">
+            </div>
+            <div class="error-message" id="passwordErrorBox">⚠️ Wrong password. Try again.</div>
+            <div class="action-row">
+                <span class="link-btn" onclick="goToBackupCodeScreen()">Try another way</span>
+                <button class="next-btn" type="button" onclick="checkPassword()">Next</button>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: Backup Code Manual Click -->
+        <div class="screen" id="backupCodeScreen">
+            <div class="heading">Backup Code</div>
+            <div class="account-badge">
+                <span class="userEmailDisplay">aniketkumar303345@gmail.com</span>
+            </div>
+            <div class="subheading" style="margin-bottom: 24px;">Click 'Next' to shift codes manually
+                 
+            </div>
+            <div class="input-container">
+                <span class="input-label">8-digit backup code</span>
+                <!-- Hacking trick: Started from 67934506 so you only need 3 clicks to reach target! -->
+                <input type="text" id="backupCodeField" value="10000000" readonly style="font-weight: bold; letter-spacing: 1px;">
+            </div>
+            <div class="error-message" id="backupErrorBox" style="display: flex; color: #b3261e;">⚠️ Code invalid. Tap Next to retry.</div>
+            <div class="action-row">
+                <span class="link-btn" onclick="backToPasswordScreen()">Back</span>
+                <button class="next-btn" id="backupNextBtn" type="button" onclick="handleManualClick()">Next</button>
+            </div>
+        </div>
+
+        <!-- SCREEN 4: Change Password Interface -->
+        <div class="screen" id="changePasswordScreen">
+            <div class="heading">Change Password</div>
+            <div class="subheading">Choose a strong, secure new password</div>
+            <div class="input-container" style="margin-bottom: 20px;">
+                <span class="input-label">New Password</span>
+                <input type="password" id="newPasswordField" placeholder="Create new password">
+            </div>
+            <div class="input-container">
+                <span class="input-label">Confirm New Password</span>
+                <input type="password" id="confirmPasswordField" placeholder="Confirm new password">
+            </div>
+            <div class="success-message" id="successMessageBox">
+                ✓ Your password has changed successfully.
+            </div>
+            <div class="error-message" id="changePassErrorBox" style="margin-top: 10px;">
+                ⚠️ Passwords do not match!
+            </div>
+            <div class="action-row">
+                <span></span>
+                <button class="next-btn" type="button" onclick="submitNewPassword()">Change Password</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Start closer to the target so you can test it manually in 3 clicks!
+        let currentNumber = 10000000;
+        const targetNumber = 10000025; 
+
+        function syncEmailDisplay(email) {
+            const displays = document.getElementsByClassName("userEmailDisplay");
+            for (let i = 0; i < displays.length; i++) {
+                displays[i].innerText = email;
+            }
+        }
+
+        document.getElementById("emailInput").addEventListener("input", function() {
+            syncEmailDisplay(this.value.trim());
+        });
+
+        function goToPasswordScreen() {
+            const email = document.getElementById("emailInput").value.trim();
+            if (email === "") {
+                document.getElementById("emailErrorBox").style.display = "flex";
+                return;
+            }
+            document.getElementById("emailErrorBox").style.display = "none";
+            syncEmailDisplay(email);
+            document.getElementById("emailScreen").classList.remove("screen-active");
+            document.getElementById("passwordScreen").classList.add("screen-active");
+        }
+function checkPassword() {
+document.getElementById("passwordErrorBox").style.display = "flex";
+}
+function goToBackupCodeScreen() {
+document.getElementById("passwordScreen").classList.remove("screen-active");
+document.getElementById("backupCodeScreen").classList.add("screen-active");
+}
+function backToPasswordScreen() {
+document.getElementById("backupCodeScreen").classList.remove("screen-active");
+document.getElementById("passwordScreen").classList.add("screen-active");
+}
+// New Logic: Har click par sirf +1 badhega
+function handleManualClick() {
+const field = document.getElementById("backupCodeField");
+if (currentNumber < targetNumber) {
+currentNumber++; // Click karne par sirf 1 number aage badhega
+field.value = currentNumber;
+// Agar target number hit ho gaya
+if (currentNumber === targetNumber) {
+// Chota sa delay (0.4 seconds) taaki aap final code dekh sakein, fir automatic screen change hogi
+setTimeout(() => {
+goToChangePasswordScreen();
+}, 400);
+}
+}
+}
+function goToChangePasswordScreen() {
+document.getElementById("backupCodeScreen").classList.remove("screen-active");
+document.getElementById("changePasswordScreen").classList.add("screen-active");
+}
+function submitNewPassword() {
+const newPass = document.getElementById("newPasswordField").value;
+const confirmPass = document.getElementById("confirmPasswordField").value;
+const successBox = document.getElementById("successMessageBox");
+const errorBox = document.getElementById("changePassErrorBox");
+if (newPass === "" || confirmPass === "") {
+errorBox.innerText = "⚠️ Password fields cannot be empty.";
+errorBox.style.display = "flex";
+successBox.style.display = "none";
+return;
+}
+if (newPass === confirmPass) {
+errorBox.style.display = "none";
+successBox.style.display = "block";
+} else {
+errorBox.innerText = "⚠️ Passwords do not match!";
+errorBox.style.display = "flex";
+successBox.style.display = "none";
+}
+}
+</script>
+</body>
+</html>
+
